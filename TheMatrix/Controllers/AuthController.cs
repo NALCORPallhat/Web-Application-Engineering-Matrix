@@ -63,6 +63,7 @@ namespace TheMatrix.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_conf.GetSection("TokenSettings:JWTKey").Value);
 
+            // Create Token descriptor
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[] {
