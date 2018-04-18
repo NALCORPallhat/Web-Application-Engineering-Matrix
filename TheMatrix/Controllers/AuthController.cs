@@ -32,6 +32,7 @@ namespace TheMatrix.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("ModelState", "ModelState invalid");
                 return BadRequest(ModelState);
             }
             // Make user name lower case

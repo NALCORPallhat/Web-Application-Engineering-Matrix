@@ -1,0 +1,14 @@
+<div class="container">
+  <form class="form-signin text-center col-xs" #registerForm="ngForm" (ngSubmit)="register()">
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <label for="inputEmail" class="sr-only">Username</label>
+    <input id="inputEmail" class="form-control" placeholder="Username" name="username" [(ngModel)]="model.UserName" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input id="inputPassword" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.Password" required>
+    <!--
+    <label for="inputPassword" class="sr-only">Confirm password</label>
+    <input id="inputPassword" class="form-control" placeholder="Confirm password" name="confirmPassword" [(ngModel)]="model.ConfirmPassword" required>
+    -->
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  </form>
+</div>
