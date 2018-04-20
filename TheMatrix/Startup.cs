@@ -62,6 +62,8 @@ namespace TheMatrix
                 .AllowAnyOrigin()
                 .AllowCredentials());
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
         }
