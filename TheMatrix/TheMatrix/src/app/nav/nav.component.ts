@@ -15,10 +15,12 @@ export class NavComponent implements OnInit {
   constructor(private authService: AuthService) {
     var isCollapsed = false;
     this.isLoggedIn = authService.isLoggedIn();
-    /*
-    if (this.isLoggedIn)
+    
+    if (this.isLoggedIn) {
       this.currentUser = JSON.parse(localStorage.getItem('user')).UserName;
-    */
+      console.log('currentUser');
+    }
+    
   }
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    if (localStorage.getItem('token') != null) {
+    if (this.authService.isLoggedIn()) {
       // already logged in!
       this.alerts = [{
         type: 'danger',

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TheMatrix.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Values")]
     public class ValuesController : Controller
     {
         // GET api/values

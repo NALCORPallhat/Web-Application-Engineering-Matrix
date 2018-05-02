@@ -80,7 +80,7 @@ namespace TheMatrix.Controllers
             var tokenString = tokenHandler.WriteToken(token);
 
             // Temporary return value for testing
-            return Ok(new { ID = storedUser.ID, Name = storedUser.UserName, TokenString = tokenString });
+            return Ok(new { TokenString = tokenString, user = new { ID = storedUser.ID, Name = storedUser.UserName } });
         }
     }
 }

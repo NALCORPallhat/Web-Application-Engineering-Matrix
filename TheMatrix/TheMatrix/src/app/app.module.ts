@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -19,10 +20,18 @@ import { AlertModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap';
 
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { MemberListComponent } from './member/member-list/member-list.component';
+import { MemberCardComponent } from './member/member-card/member-card.component';
+import { FriendListComponent } from './friend-list/friend-list.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'member-list', component: MemberListComponent },
+  { path: 'friend-list', component: FriendListComponent },
+  { path: 'messages', component: MessagesComponent },
+  { path: '', component: HomeComponent }
 ]
 
 export function tokenGetter() {
@@ -34,7 +43,11 @@ export function tokenGetter() {
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    MemberListComponent,
+    MemberCardComponent,
+    FriendListComponent,
+    MessagesComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
@@ -52,7 +65,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [AuthService, JwtHelperService],
+  providers: [AuthService, JwtHelperService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
