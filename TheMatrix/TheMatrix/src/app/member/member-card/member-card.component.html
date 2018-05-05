@@ -1,7 +1,8 @@
 <div class="card" style="width: 18rem">
-  <img src="{{user.profilePhotoUrl}}" class="card-img-top">
+  <img src="{{user.profilePhotoURL}}" class="card-img-top">
   <div class="card-body">
     <h5 class="card-title">{{user.name}}, {{user.age}}</h5>
     <h6 class="card-subtitle">{{user.city}}</h6>
+    <a routerLink="/member-details/{{user.id}}" class="btn btn-primary">Details</a>
   </div>
 </div>

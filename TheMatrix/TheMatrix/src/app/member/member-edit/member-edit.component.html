@@ -1,0 +1,61 @@
+<h1>{{user.name}}'s Profile</h1>
+<div>
+  <!-- Overview div -->
+  <div>
+    <img src="{{user.profilePhotoUrl}}" />
+  </div>
+  <strong>Location</strong>
+  <div>
+    {{user.city}}
+  </div>
+  <strong>Age</strong>
+  <div>
+    {{user.age}}
+  </div>
+  <strong>Last Active</strong>
+  <div>
+    {{user.lastActive | timeAgo}}
+  </div>
+  <strong>Member Since</strong>
+  <div>
+    {{user.created}}
+  </div>
+</div>
+<div>
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" id="myTab" role="tabList">
+    <li class="nav-item">
+      <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about"
+         role="tab" aria-controls="about" aria-selected="true">About {{user.name}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" id="interests-tab" data-toggle="tab" href="#interests"
+         role="tab" aria-controls="interests" aria-selected="false">Interests</a>
+    </li>
+  </ul>
+  <!-- Details div -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <form class="form-group col-xs" #editForm="ngForm" (ngSubmit)="update()">
+        <h4>Introduction</h4>
+        <textarea class="form-control" rows="4" [(ngModel)]="model.Introduction" required>
+        {{user.introduction}}
+        </textarea>
+        <h4>Looking For</h4>
+        <textarea class="form-control" rows="4" [(ngModel)]="model.LookingFor" required>
+        {{user.lookingFor}}
+        </textarea>
+        <h4>Interests</h4>
+        <textarea class="form-control" rows="4" [(ngModel)]="model.Interests" required>
+        {{user.interests}}
+        </textarea>
+        <h4>City</h4>
+        <input class="form-control" value="{{user.city}}" [(ngModel)]="model.City" required />
+        <button class="btn btn-primary" submit>Save Changes</button>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photos-tab">
+      <app-photo-editor [photos]="user.photos"></app-photo-editor>
+    </div>
+  </div>
+</div>

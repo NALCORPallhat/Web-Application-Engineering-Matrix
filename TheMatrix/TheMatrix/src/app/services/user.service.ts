@@ -15,9 +15,23 @@ export class UserService {
   getUsers() {
     return this.http.get<IUser[]>(this.baseUrl)
       .map((result: IUser[]) => {
-        console.log(result);
+        console.log(result); // testing
         return result;
       });
   }
 
+  getUser(id) {
+    return this.http.get<IUser>(this.baseUrl + '/getuser/' + id)
+      .map((result: IUser) => {
+        console.log(result); // testing
+        return result;
+      });
+  }
+
+  updateUser(id, edits) {
+    return this.http.put(this.baseUrl + '/updateuser/' + id, edits)
+      .map(result => {
+        return result;
+      });
+  }
 }

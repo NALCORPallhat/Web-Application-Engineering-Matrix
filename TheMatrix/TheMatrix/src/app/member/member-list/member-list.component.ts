@@ -12,9 +12,11 @@ export class MemberListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   members: any;
+  memberListGot: boolean; // for determining whether loading message is displayed
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(m => { this.members = m });
+    this.memberListGot = false;
+    this.userService.getUsers().subscribe(m => { this.members = m; this.memberListGot = true; });
     console.log(this.members);
   }
 

@@ -1,0 +1,62 @@
+<h1>{{user.name}}'s Profile</h1>
+<div>
+  <!-- Overview div -->
+  <div>
+    <img src="{{user.profilePhotoURL}}" />
+  </div>
+  <strong>Location</strong>
+  <div>
+    {{user.city}}
+  </div>
+  <strong>Age</strong>
+  <div>
+    {{user.age}}
+  </div>
+  <strong>Last Active</strong>
+  <div>
+    {{user.lastActive | timeAgo}}
+  </div>
+  <strong>Member Since</strong>
+  <div>
+    {{user.created}}
+  </div>
+</div>
+<div>
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" id="myTab" role="tabList">
+    <li class="nav-item">
+      <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about"
+         role="tab" aria-controls="about" aria-selected="true">About {{user.name}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" id="interests-tab" data-toggle="tab" href="#interests"
+         role="tab" aria-controls="interests" aria-selected="false">Interests</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" id="photos-tab" data-toggle="tab" href="#photos"
+         role="tab" aria-controls="photos" aria-selected="false">Photos</a>
+    </li>
+  </ul>
+  <!-- Details div -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+      <div>
+        {{user.introduction}}
+      </div>
+      <div>
+        {{user.lookingFor}}
+      </div>
+    </div>
+    <div class="tab-pane fade" id="interests" role="tabpanel" aria-labelledby="interests-tab">
+      {{user.interests}}
+    </div>
+    <div class="tab-pane fade" id="interests" role="tabpanel" aria-labelledby="interests-tab">
+      <div class="container">
+        <div class="row">
+          <!--*ngFor="let photo in photos"-->
+          <img class="col-auto" src="{{photo.url}}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

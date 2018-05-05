@@ -20,7 +20,8 @@ namespace TheMatrix.Data
         public async Task<User> Login(string userName, string password)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == userName);
-
+            user.LastActive = DateTime.Now;
+            _context.Users.Update(user);
             return (user == null || !PasswordHashVerified(password, user.PassHash, user.Salt)) ? null : user;
         }
 
@@ -36,19 +37,21 @@ namespace TheMatrix.Data
                 return false;
         }
 
-        public async Task<User> Register(string userName, string password)
+        public async Task<User> Register(User user, string password)
         {
             // Hash the password using SHA512 with random key (salt)
             var hash = new HMACSHA512();
             var computedHash = hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 
-            var newUser = new User { UserName = userName };
-            newUser.PassHash = computedHash;
-            newUser.Salt = hash.Key;
+            // var newUser = new User { UserName = user.UserName };
+            // newUser.PassHash = computedHash;
+            user.PassHash = computedHash;
+            // newUser.Salt = hash.Key;
+            user.Salt = hash.Key;
 
-            await _context.Users.AddAsync(newUser);
+            await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
-            return newUser;
+            return user;
         }
 
         public async Task<bool> UserExists(string userName)

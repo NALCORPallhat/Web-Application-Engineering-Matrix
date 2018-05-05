@@ -24,6 +24,11 @@ import { MemberListComponent } from './member/member-list/member-list.component'
 import { MemberCardComponent } from './member/member-card/member-card.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MemberDetailsComponent } from './member/member-details/member-details.component';
+
+import { TimeAgoPipe } from 'time-ago-pipe';
+import { MemberEditComponent } from './member/member-edit/member-edit.component';
+import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,6 +36,8 @@ const appRoutes: Routes = [
   { path: 'member-list', component: MemberListComponent },
   { path: 'friend-list', component: FriendListComponent },
   { path: 'messages', component: MessagesComponent },
+  { path: 'member-details/:id', component: MemberDetailsComponent },
+  { path: 'member-edit/:id', component: MemberEditComponent },
   { path: '', component: HomeComponent }
 ]
 
@@ -47,7 +54,11 @@ export function tokenGetter() {
     MemberListComponent,
     MemberCardComponent,
     FriendListComponent,
-    MessagesComponent
+    MessagesComponent,
+    MemberDetailsComponent,
+    TimeAgoPipe,
+    MemberEditComponent,
+    PhotoEditorComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { enableTracing: false }),

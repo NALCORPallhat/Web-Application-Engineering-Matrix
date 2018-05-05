@@ -14,10 +14,11 @@ export class AuthService {
   login(user) {
     return this.http.post<AuthUser>(this.baseUrl + '/login', user)
       .map((result: AuthUser) => {
-        console.log(result);
+        // console.log("USER RESULTS in login(): ", result); // testing
         if (result) {
           localStorage.setItem('token', result.tokenString);
           localStorage.setItem('user', JSON.stringify(result.user));
+          console.log(JSON.stringify(result.user)); // testing
         }
         return result;
       });
@@ -43,8 +44,7 @@ export class AuthService {
 
   register(userModel) {
     console.log('In register()!');
-    var registerUserModel = { 'UserName': userModel.UserName, 'Password': userModel.Password }
     const contentHeader = new HttpHeaders({ 'Content-type': 'application/json' });
-    return this.http.post((this.baseUrl + '/register'), registerUserModel, { headers: contentHeader });
+    return this.http.post((this.baseUrl + '/register'), userModel, { headers: contentHeader });
   }
 }

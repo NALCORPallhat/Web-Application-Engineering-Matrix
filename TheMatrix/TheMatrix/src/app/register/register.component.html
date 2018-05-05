@@ -3,12 +3,38 @@
     <h1 class="h3 mb-3 font-weight-normal">Register</h1>
     <label for="inputEmail" class="sr-only">Username</label>
     <input id="inputEmail" class="form-control" placeholder="Username" name="username" [(ngModel)]="model.UserName" required autofocus>
+
     <label for="inputPassword" class="sr-only">Password</label>
     <input id="inputPassword" class="form-control" placeholder="Password" name="password" type="password" [(ngModel)]="model.Password" required>
-    <!--
-    <label for="inputPassword" class="sr-only">Confirm password</label>
-    <input id="inputPassword" class="form-control" placeholder="Confirm password" name="confirmPassword" [(ngModel)]="model.ConfirmPassword" required>
-    -->
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+
+    <label for="inputConfirmPassword" class="sr-only">Confirm password</label>
+    <input id="inputConfirmPassword" class="form-control" placeholder="Confirm password" name="confirmPassword" type="password" [(ngModel)]="model.ConfirmPassword" required>
+
+    <label for="inputGender" class="sr-only">Gender</label>
+    <div id="inputGender">
+      <div class="form-check form-check-inline">
+        <input id="inputGenderMale" class="form-check-input" name="gender" type="radio" [(ngModel)]="model.Gender">
+        <label for="inputGenderMale" class="form-check-label">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input id="inputGenderFemale" class="form-check-input" name="gender" type="radio" [(ngModel)]="model.Gender">
+        <label for="inputGenderFemale" class="form-check-label">Female</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input id="inputGenderOther" class="form-check-input" name="gender" type="radio" [(ngModel)]="model.Gender">
+        <label for="inputGenderOther" class="form-check-label">Other</label>
+      </div>
+    </div>
+
+    <label for="inputName" class="sr-only">Name</label>
+    <input id="inputName" class="form-control" placeholder="Name" name="name" [(ngModel)]="model.Name" required>
+
+    <label for="inputBirthDate" class="sr-only">Name</label>
+    <input id="inputBirthDate" class="form-control" placeholder="Birth date" name="birthDate" type="date" [(ngModel)]="model.BirthDate" required>
+
+    <label for="inputCity" class="sr-only">Name</label>
+    <input id="inputCity" class="form-control" placeholder="City" name="city" [(ngModel)]="model.City" required>
+
+    <button class="btn btn-lg btn-primary btn-block" [disabled]="!registerForm.valid || model.Password != model.ConfirmPassword">Register</button>
   </form>
 </div>

@@ -11,6 +11,8 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
+using AutoMapper;
+using TheMatrix.Models;
 
 namespace TheMatrix.Controllers
 {
@@ -20,11 +22,13 @@ namespace TheMatrix.Controllers
     {
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _conf;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthRepository repo, IConfiguration conf)
+        public AuthController(IAuthRepository repo, IConfiguration conf, IMapper mapper)
         {
             _repo = repo;
             _conf = conf;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
@@ -39,7 +43,7 @@ namespace TheMatrix.Controllers
             user.UserName = user.UserName.ToLower();
 
             // If duplicate user name return bad request here
-            if (_repo.UserExists(user.UserName).Result)
+            if (await _repo.UserExists(user.UserName))
             {
                 ModelState.AddModelError("UserName", "User name already exists");
                 return BadRequest(ModelState);
@@ -47,9 +51,9 @@ namespace TheMatrix.Controllers
 
             // Need method in AuthRepo to test for this
 
-            var newUser = await _repo.Register(user.UserName, user.Password);
+            var newUser = await _repo.Register(_mapper.Map<RegisterUserDTO, User>(user), user.Password);
             // Temporary return result for testing
-            return StatusCode(201, new { ID = newUser.ID, UserName = newUser.UserName });
+            return Created("api/auth/register", _mapper.Map<User, DetailUserDTO>(newUser));
         }
 
         [HttpPost("login")]

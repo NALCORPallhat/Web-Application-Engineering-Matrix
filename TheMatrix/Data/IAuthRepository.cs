@@ -8,7 +8,7 @@ namespace TheMatrix.Data
 {
     public interface IAuthRepository
     {
-        Task<User> Register(string user, string password);
+        Task<User> Register(User user, string password);
         Task<User> Login(string userName, string password);
         Task<bool> UserExists(string userName);
     }

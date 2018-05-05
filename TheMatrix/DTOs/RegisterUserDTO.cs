@@ -14,5 +14,11 @@ namespace TheMatrix.DTOs
 
         [MinLength(6, ErrorMessage = "{0} must be at least {1} characters long")]
         public string Password { get; set; }
+
+        public string Name { get; set; }
+        
+        public DateTime BirthDate { get; set; }
+
+        public string City { get; set; }
     }
 }

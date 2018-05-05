@@ -37,7 +37,7 @@ namespace TheMatrix.Controllers
             return usersBriefData;
         }
 
-        [HttpGet("getuser")]
+        [HttpGet("getuser/{id}")]
         public async Task<DetailUserDTO> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
@@ -45,10 +45,18 @@ namespace TheMatrix.Controllers
             return userDetails;
         }
 
-        [HttpGet("getusernotdto")]
-        public async Task<User> GetUserNotDTO(int id)
+        [HttpPut("updateuser/{id}")]
+        public async Task<NoContentResult> UpdateUser(int id, [FromBody] UpdateUserDTO edits)
         {
-            return await _repo.GetUser(id);
+            var user = await _repo.GetUser(id);
+            user.Introduction = edits.Introduction;
+            user.Interests = edits.Interests;
+            user.LookingFor = edits.LookingFor;
+            user.City = edits.City;
+            _repo.Update(user);
+            Console.Write(user.City);
+            await _repo.SaveAll();
+            return NoContent();
         }
     }
 }

@@ -32,11 +32,11 @@
     <div *ngIf="isLoggedIn" class="btn-group" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
               aria-controls="dropdown-basic">
-        Welcome {{ currentUser }} <span class="caret"></span>
+        Welcome {{ currentUser.name }} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
           role="menu" aria-labelledby="button-basic">
-        <li role="menuitem"><a class="dropdown-item" href="#">Edit Profile</a></li>
+        <li role="menuitem"><a class="dropdown-item" routerLink="/member-edit/{{ currentUser.id }}">Edit Profile</a></li>
         <li role="menuitem"><button class="dropdown-item btn btn-outline-success" (click)="logout()">Sign Out</button></li>
       </ul>
     </div>

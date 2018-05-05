@@ -23,8 +23,13 @@ namespace TheMatrix.Data
                 opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsProfilePic).Url);
             }).ForMember(dest => dest.Age, opt => {
                 opt.ResolveUsing(d => d.BirthDate.CalculateAge());
-            }); ;
+            });
+
             CreateMap<Photo, PhotoDTO>();
+
+            CreateMap<RegisterUserDTO, User>();
+
+            CreateMap<User, UpdateUserDTO>();
         }
     }
 }

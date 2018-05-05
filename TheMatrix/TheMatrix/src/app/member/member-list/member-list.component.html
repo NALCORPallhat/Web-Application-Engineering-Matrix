@@ -1,5 +1,8 @@
 <div class="container">
-  <div class="row">
+  <div *ngIf="!memberListGot">
+    Loading member list...
+  </div>
+  <div *ngIf="memberListGot" class="row">
     <app-member-card *ngFor="let member of members" [user]="member" class="col-auto"></app-member-card>
   </div>
 </div>
